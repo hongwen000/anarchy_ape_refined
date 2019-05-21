@@ -34,3 +34,7 @@ fabric.properties
 target/
 *.iml
 *.swp
+.classpath
+.project
+.settings/
+.vscode/
