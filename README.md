@@ -26,12 +26,17 @@ Compilation
    make install
 ```
 
+Installation 
+-----------
+Makefile is provided to install command `ape` to `PREFIX`(default to `/usr/local/bin`) on both local and remote machines using ansible.
+Edit `install_ansible.yml` to specify remote hosts, then run `make`.
+
 Running 
 -------
 [Java]
 
 ```
-java -jar ape.jar [commands]
+java -jar anarchy_ape.jar [commands]
 ```
 
 log file: /var/log/ape.log
@@ -39,7 +44,7 @@ log file: /var/log/ape.log
 Example:
 
 ```
-java -jar ape.jar -L -S 100 5
+java -jar anarchy_ape.jar -L -S 100 5
 ```
 Runs in the local and injects slow network with delay 100 milliseconds for 5 seconds.
 
@@ -50,7 +55,7 @@ Install pdsh:
 yum install pdsh
 apt-get install pdsh
 
-java -jar ape.jar -R node1,node2,node3 -S 100 5
+java -jar anarchy_ape.jar -R node1,node2,node3 -S 100 5
 creates a script to run on the remote hosts:
 pdsh -Rssh -w node1,node2,node3 '/usr/local/bin/ape -L -S 100 5'
 ```
@@ -64,7 +69,7 @@ script specifying the types of errors to be injected or failures to be simulated
 scenario file could be as follows:
 
 ```
-java -jar ape.jar -remote cluster-ip-list.xml -F lambda -k lambda
+java -jar anarchy_ape.jar -remote cluster-ip-list.xml -F lambda -k lambda
 	where the -F is a “Fork Bomb” injection, the -k is a “Kill
 	One Node” command, and the lambda specifies the failure rates.
 ```
@@ -123,7 +128,7 @@ usage: ape [options] ... <failure command>
                                                  offset in bytes as the
                                                  3rd argument
  -d,--network-disconnect <time in seconds> <device>
- 																								 Disconnect the network
+ 																 Disconnect the network
                                                  for a certain period of
                                                  time in seconds specified in the
                                                  argument, and then resumes on the
@@ -141,7 +146,7 @@ usage: ape [options] ... <failure command>
  -L,--local                                      Run commands locally
  -P,--panic                                      Forces a kernel panic and does not restart the system.
  -p,--network-drop <percentage> <duration> <device>
- 																								 Drops a specified
+ 															    Drops a specified
                                                  percentage of ALL inbound
                                                  network packets for a
                                                  duration specified in seconds on the
@@ -152,7 +157,7 @@ usage: ape [options] ... <failure command>
                                                  a datanode at the given
                                                  hostname
  -S,--network-slow <delay> <duration> <device>           
- 																								 Delay ALL network packet
+ 																 Delay ALL network packet
                                                  delivery by a specified
                                                  amount of time (in
                                                  milliseconds) for a

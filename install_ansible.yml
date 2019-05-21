@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: copy sh file
+      copy: src=/usr/local/bin/ape dest=/usr/local/bin/ape remote_src=no
+            mode=755
+    - name: copy jar file
+      copy: src=/usr/local/bin/anarchy_ape.jar dest=/usr/local/bin/anarchy_ape.jar remote_src=no
+            mode=644
